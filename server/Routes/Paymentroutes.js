@@ -1,10 +1,10 @@
 import express from "express";
 const router = express.Router();
+import * as env from "dotenv";
 import stripe from "stripe";
 import donateModel from "../model/donate.js";
-const stripeInstance = stripe(
-  "sk_test_51POG6zDgIr1KvcHtI8QtqPATTDdyPqSrKo47mZIkPy6SZqtAZ4Dlu02WTB86qd2UDv4XunNkTxAABigDwLc92wtm00zaZC7WAh"
-);
+env.config();
+const stripeInstance = stripe(process.env.STRIPE_SECRET_KEY);
 
 router.post("/create-checkout-session", async (req, res) => {
   try {
