@@ -3,13 +3,14 @@ import Navbar from "./Navbar";
 import { useEffect } from "react";
 import AOS from "aos";
 import mission_shakti from "../assets/mission_shakti.jpeg";
-import colorkit from "../assets/colorkit.png";
+import { Link } from "react-router-dom";
 import "aos/dist/aos.css";
 import "../App.css";
 function Faq() {
   useEffect(() => {
     AOS.init();
   }, []);
+
   return (
     <div className="bg-[#009688] manrope">
       <Navbar></Navbar>
@@ -44,9 +45,12 @@ function Faq() {
               <button class="inline-flex text-white bg-[#7371EE] border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
                 File a Complaint
               </button>
-              <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
-                About us
-              </button>
+              <Link
+                to="/donate"
+                className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
+              >
+                Donate us
+              </Link>
             </div>
           </div>
         </div>

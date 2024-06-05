@@ -6,6 +6,9 @@ import Knowledgebank from "./components/Knowledgebank";
 import Faq from "./components/Faq";
 import Login from "./components/Login";
 import LoginSignUp from "./components/LoginSignup";
+import Success from "./components/payment/Success";
+import Failure from "./components/payment/Failure";
+import Donate from "./components/payment/Donate";
 export default function App() {
   return (
     <div>
@@ -16,6 +19,9 @@ export default function App() {
           <Route path="/knowledgebank" element={<Knowledgebank />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/login" element={<LoginSignUp />} />
+          <Route path="/sucess" element={<Success />} />
+          <Route path="/cancel" element={<Failure />} />
+          <Route path="/donate" element={<Donate />} />
         </Routes>
       </BrowserRouter>
     </div>
