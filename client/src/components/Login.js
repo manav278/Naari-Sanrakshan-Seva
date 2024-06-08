@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -10,14 +14,26 @@ const LoginForm = () => {
     e.preventDefault();
     setError("");
 
-    // try {
-    //   const response = await axios.post('https://your-backend-api.com/login', { email, password });
-    //   // Handle successful login (e.g., save token, redirect)
-    //   console.log(response.data);
-    // } catch (error) {
-    //   setError('Login failed');
-    //   console.error(error);
-    // }
+    try {
+      const response = await axios.post("http://localhost:3003/api/login", {
+        email,
+        password,
+      });
+      if (response.data.message == "Login successful") {
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
+        toast("Login successful", {
+          onClose: () => navigate("/dashboard"),
+        });
+      } else if (response.data.message == "User doesn't exists") {
+        toast("User doesn't exists");
+      } else {
+        toast("Error from fetching database");
+      }
+    } catch (error) {
+      setError("Login failed");
+      console.error(error);
+    }
   };
 
   return (
@@ -60,6 +76,7 @@ const LoginForm = () => {
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

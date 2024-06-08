@@ -9,6 +9,7 @@ import LoginSignUp from "./components/LoginSignup";
 import Success from "./components/payment/Success";
 import Failure from "./components/payment/Failure";
 import Donate from "./components/payment/Donate";
+import Dashboard from "./components/Dashboard";
 export default function App() {
   return (
     <div>
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/sucess" element={<Success />} />
           <Route path="/cancel" element={<Failure />} />
           <Route path="/donate" element={<Donate />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </div>

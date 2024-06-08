@@ -1,46 +1,52 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  User_ID: {
+  Case_ID: {
     type: Number,
     require: true,
     unique: true,
   },
-  First_Name: {
+  Complainants_ID: {
+    type: Number,
+    require: true,
+    unique: true,
+  },
+  Complaint_Description: {
     type: String,
     require: true,
   },
-  Last_Name: {
+  Respondent_Name: {
     type: String,
     require: true,
   },
-  Mobile_Number: {
+  Respondent_Contact_Number: {
     type: String,
     require: true,
   },
-  Email: {
+  Respondent_Email: {
     type: String,
     require: true,
     unique: true,
   },
-  Address: {
+  Respondent_Address: {
     type: String,
     require: true,
   },
-  City: {
+  Evidence: {
     type: String,
     require: true,
   },
-  State: {
+  Evidence_Description: {
     type: String,
     require: true,
   },
-  Country: {
+  Witness_Name: {
     type: String,
     require: true,
   },
-  Case_IDS: {
-    type: [Number],
+  Witness_Contact_Number: {
+    type: String,
+    require: true,
   },
 });
 

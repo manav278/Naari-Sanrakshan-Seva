@@ -3,6 +3,12 @@ import logo from "../assets/logo.jpg";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isImageVisible, setIsImageVisible] = useState(false);
+  const handleLogout = () => {
+    localStorage.removeItem("email");
+    localStorage.removeItem("password");
+    window.location.href = "/login";
+  };
+  const isLoggedIn = localStorage.getItem("email");
   return (
     <nav className="bg-[#009688] md:p-1 text-[#ffffff]">
       <div className="mx-auto flex justify-between md:justify-around sm:items-center">
@@ -25,13 +31,27 @@ const Navbar = () => {
           </a>
           <button
             onClick={() => setIsImageVisible(!isImageVisible)}
-            className="text-[#FFC107] border border-[#FFC107] p-2 rounded hover:text-[#212529] hover:bg-[#FFC107] "
+            className="text-[#FFC107] border border-[#FFC107] p-2 rounded hover:text-[#212529] hover:bg-[#FFC107]"
           >
             How it Works
           </button>
-          <a href="/login" className="hover:text-[#FFC107]">
-            LOGIN
-          </a>
+          {isLoggedIn && (
+            <a href="/dashboard" className="hover:text-[#FFC107]">
+              DASHBOARD
+            </a>
+          )}
+          {isLoggedIn ? (
+            <button
+              onClick={handleLogout}
+              className="hover:text-[#FFC107] focus:outline-none"
+            >
+              LOGOUT
+            </button>
+          ) : (
+            <a href="/login" className="hover:text-[#FFC107]">
+              LOGIN
+            </a>
+          )}
         </div>
         <div className="md:hidden flex">
           <button
@@ -89,12 +109,18 @@ const Navbar = () => {
               How it Works
             </button>
           </div>
-          <a
-            href="/login"
-            className="block text-center text-gray-300 p-4 hover:text-[#FFC107]"
-          >
-            LOGIN
-          </a>
+          {isLoggedIn ? (
+            <button
+              onClick={handleLogout}
+              className="hover:text-[#FFC107] focus:outline-none"
+            >
+              LOGOUT
+            </button>
+          ) : (
+            <a href="/login" className="hover:text-[#FFC107]">
+              LOGIN
+            </a>
+          )}
         </div>
       )}
       {isImageVisible && (

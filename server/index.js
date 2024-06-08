@@ -5,6 +5,7 @@ import * as env from "dotenv";
 // ---------------------------------------------
 import Loginroutes from "./Routes/Loginroutes.js";
 import Paymentroutes from "./Routes/Paymentroutes.js";
+import Dashboardroutes from "./Routes/Dashboardroutes.js"
 // ---------------------------------------------
 env.config();
 const app = express();
@@ -36,8 +37,10 @@ try {
 // ---------------------------------------------
 app.use("/api", Loginroutes);
 app.use("/api", Paymentroutes);
+app.use("/api", Dashboardroutes);
 // ---------------------------------------------
 const port = process.env.PORT || 3003;
 app.listen(port, () => {
   console.log("started " + port);
 });
+  
