@@ -10,6 +10,7 @@ import Success from "./components/payment/Success";
 import Failure from "./components/payment/Failure";
 import Donate from "./components/payment/Donate";
 import Dashboard from "./components/Dashboard";
+import Filecomplaint from "./components/Filecomplaint";
 export default function App() {
   return (
     <div>
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/cancel" element={<Failure />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/filecomplaint" element={<Filecomplaint />} />
         </Routes>
       </BrowserRouter>
     </div>

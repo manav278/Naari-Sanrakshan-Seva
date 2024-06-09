@@ -10,7 +10,7 @@ const Dashboard = () => {
 
     const fetchUserData = async () => {
       try {
-        const response = await axios.get("http://localhost:3003/api/dashboard");
+        const response = await axios.get(`http://localhost:3003/api/dashboard?email=${email}`);
         setUserData(response.data);
       } catch (error) {
         console.error("Error fetching user data:", error);

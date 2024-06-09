@@ -5,11 +5,9 @@ const router = express.Router();
 import { getUserId } from "./Loginroutes.js";
 
 router.get("/dashboard", async (req, res) => {
-  const userID = getUserId();
-  console.log("1");
+  const email = req.query.email;
   try {
-    const u = await user.findOne({ User_ID: userID });
-    console.log(u);
+    const u = await user.findOne({ Email: email });
     if (u) {
       res.json(u);
     } else {

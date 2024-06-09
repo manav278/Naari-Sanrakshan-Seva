@@ -42,9 +42,11 @@ function Faq() {
               workplace, you can file a complaint here.
             </p>
             <div class="flex justify-center">
-              <button class="inline-flex text-white bg-[#7371EE] border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-                File a Complaint
-              </button>
+              <Link to="/filecomplaint">
+                <button class="inline-flex text-white bg-[#7371EE] border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                  File a Complaint
+                </button>
+              </Link>
               <Link
                 to="/donate"
                 className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"

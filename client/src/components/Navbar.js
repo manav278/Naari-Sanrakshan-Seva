@@ -23,15 +23,9 @@ const Navbar = () => {
           <a href="/about" className="hover:text-[#FFC107]">
             ABOUTUS
           </a>
-          <a href="/knowledgebank" className="hover:text-[#FFC107]">
-            KNOWLEDGE BANK
-          </a>
-          <a href="/faq" className="hover:text-[#FFC107]">
-            FAQ
-          </a>
           <button
             onClick={() => setIsImageVisible(!isImageVisible)}
-            className="text-[#FFC107] border border-[#FFC107] p-2 rounded hover:text-[#212529] hover:bg-[#FFC107]"
+            className="text-[#FFC107] border border-[#FFC107] p-2 rounded hover:text-[#212529] hover:bg-[#FFC107] whitespace-nowrap"
           >
             How it Works
           </button>
@@ -89,35 +83,36 @@ const Navbar = () => {
           >
             ABOUTUS
           </a>
-          <a
-            href="/knowledgebank"
-            className="block text-center text-gray-300 p-4 hover:text-[#FFC107]"
-          >
-            KNOWLEDGE BANK
-          </a>
-          <a
-            href="/faq"
-            className="block text-center text-gray-300 p-4 hover:text-[#FFC107]"
-          >
-            FAQ
-          </a>
           <div className="text-center block px-24 py-4">
             <button
               onClick={() => setIsImageVisible(!isImageVisible)}
-              className="w-[100%] text-center text-[#FFC107] border border-[#FFC107] p-2 rounded hover:text-[#212529] hover:bg-[#FFC107] "
+              className="w-[100%] text-center text-[#FFC107] border border-[#FFC107] p-2 rounded hover:text-[#212529] hover:bg-[#FFC107]"
             >
               How it Works
             </button>
           </div>
-          {isLoggedIn ? (
-            <button
-              onClick={handleLogout}
-              className="hover:text-[#FFC107] focus:outline-none"
+          {isLoggedIn && (
+            <a
+              href="/dashboard"
+              className="block text-center text-gray-300 p-4 hover:text-[#FFC107]"
             >
-              LOGOUT
-            </button>
+              DASHBOARD
+            </a>
+          )}
+          {isLoggedIn ? (
+            <div className="text-center block px-24 py-4">
+              <button
+                onClick={handleLogout}
+                className="w-[100%] text-center text-[#FFC107] border border-[#FFC107] p-2 rounded hover:text-[#212529] hover:bg-[#FFC107]"
+              >
+                LOGOUT
+              </button>
+            </div>
           ) : (
-            <a href="/login" className="hover:text-[#FFC107]">
+            <a
+              href="/login"
+              className="block text-center text-gray-300 p-4 hover:text-[#FFC107]"
+            >
               LOGIN
             </a>
           )}

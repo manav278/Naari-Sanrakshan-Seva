@@ -9,10 +9,9 @@ function getUserId() {
 }
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, password);
   let u;
   try {
-    u = await authdata.findOne({ Email: email });
+    u = await authdata.findOne({ Email: email,Password:password });
     if (!u) {
       res.status(200).json({ message: "User doesn't exists" });
     } else {
