@@ -10,7 +10,9 @@ const Dashboard = () => {
 
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3003/api/dashboard?email=${email}`);
+        const response = await axios.get(
+          `http://localhost:3003/api/dashboard?email=${email}`
+        );
         setUserData(response.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -23,52 +25,40 @@ const Dashboard = () => {
     }
   }, []);
 
-  const caseData = [
-    {
-      caseId: 101,
-      description: "Domestic Violence",
-      date: "2024-05-01",
-      status: "Open",
-      location: "City A",
-      assignedTo: "Social Worker 1",
-      // Add more attributes as needed
-    },
-    {
-      caseId: 102,
-      description: "Workplace Discrimination",
-      date: "2024-05-15",
-      status: "Closed",
-      location: "City B",
-      assignedTo: "Social Worker 2",
-      // Add more attributes as needed
-    },
-    {
-      caseId: 102,
-      description: "Workplace Discrimination",
-      date: "2024-05-15",
-      status: "Closed",
-      location: "City B",
-      assignedTo: "Social Worker 2",
-      // Add more attributes as needed
-    },
-    {
-      caseId: 102,
-      description: "Workplace Discrimination",
-      date: "2024-05-15",
-      status: "Closed",
-      location: "City B",
-      assignedTo: "Social Worker 2",
-      // Add more attributes as needed
-    },
-    // Add more case data as needed
-  ];
+  const [caseData, setCaseData] = useState([]);
+  useEffect(() => {
+    fetchCases();
+  }, []);
 
-  const pendingCases = caseData.filter(
-    (caseItem) => caseItem.status === "Open"
-  );
-  const solvedCases = caseData.filter(
-    (caseItem) => caseItem.status === "Closed"
-  );
+  const fetchCases = async () => {
+    try {
+      const email = localStorage.getItem("email");
+      const response = await axios.get(
+        `http://localhost:3003/api/dashboardcases?email=${email}`
+      );
+      setCaseData(response.data);
+      console.log(response);
+    } catch (error) {
+      console.error("Error fetching cases:", error);
+    }
+  };
+
+  const handleDownloadEvidence = async (caseId) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3003/api/evidence/${caseId}`,
+        { responseType: 'blob' } // Set responseType to 'blob' to handle binary data
+      );
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `${caseId}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+    } catch (error) {
+      console.error("Error downloading evidence:", error);
+    }
+  };
 
   return (
     <div>
@@ -110,6 +100,7 @@ const Dashboard = () => {
         </div>
 
         {/* Case Details */}
+
         <div className="w-full lg:w-2/3 p-6">
           <h2 className="text-lg font-semibold mb-2 text-center">
             Case Details
@@ -117,82 +108,69 @@ const Dashboard = () => {
           <div className="bg-white shadow-lg rounded-lg overflow-y-auto md:h-[400px]">
             {/* Pending Cases */}
             <div className="mb-2">
-              <h2 className="text-lg font-semibold pl-3">Pending Cases</h2>
-              {pendingCases.map((caseItem) => (
+              <h2 className="text-lg font-semibold pl-3">User Cases</h2>
+              {caseData.map((caseItem) => (
                 <div
-                  key={caseItem.caseId}
+                  key={caseItem.Case_ID}
                   className="border-b border-gray-200 p-3 flex items-center justify-between"
                 >
                   <div className="grid grid-cols-2 gap-4 w-full">
                     <div className="flex flex-col">
                       <p className="text-gray-600">
                         <span className="font-semibold">Case ID:</span>{" "}
-                        {caseItem.caseId}
+                        {caseItem.Case_ID}
                       </p>
                       <p className="text-gray-600">
-                        <span className="font-semibold">Description:</span>{" "}
-                        {caseItem.description}
+                        <span className="font-semibold">Complainant ID:</span>{" "}
+                        {caseItem.Complainant_ID}
                       </p>
                       <p className="text-gray-600">
-                        <span className="font-semibold">Date:</span>{" "}
-                        {caseItem.date}
+                        <span className="font-semibold">Respondent Name:</span>{" "}
+                        {caseItem.Respondent_Name}
                       </p>
                     </div>
                     <div className="flex flex-col">
                       <p className="text-gray-600">
-                        <span className="font-semibold">Status:</span>{" "}
-                        {caseItem.status}
+                        <span className="font-semibold">
+                          Complaint Description:
+                        </span>{" "}
+                        {caseItem.Complaint_Description}
                       </p>
                       <p className="text-gray-600">
-                        <span className="font-semibold">Location:</span>{" "}
-                        {caseItem.location}
+                        <span className="font-semibold">
+                          Respondent Contact Number:
+                        </span>{" "}
+                        {caseItem.Respondent_Contact_Number}
                       </p>
                       <p className="text-gray-600">
-                        <span className="font-semibold">Assigned To:</span>{" "}
-                        {caseItem.assignedTo}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Solved Cases */}
-            <div>
-              <h2 className="text-lg font-semibold pl-3">Solved Cases</h2>
-              {solvedCases.map((caseItem) => (
-                <div
-                  key={caseItem.caseId}
-                  className="border-b border-gray-200 p-3 flex items-center justify-between"
-                >
-                  <div className="grid grid-cols-2 gap-4 w-full">
-                    <div className="flex flex-col">
-                      <p className="text-gray-600">
-                        <span className="font-semibold">Case ID:</span>{" "}
-                        {caseItem.caseId}
+                        <span className="font-semibold">Respondent Email:</span>{" "}
+                        {caseItem.Respondent_Email}
                       </p>
                       <p className="text-gray-600">
-                        <span className="font-semibold">Description:</span>{" "}
-                        {caseItem.description}
+                        <span className="font-semibold">
+                          Respondent Address:
+                        </span>{" "}
+                        {caseItem.Respondent_Address}
                       </p>
                       <p className="text-gray-600">
-                        <span className="font-semibold">Date:</span>{" "}
-                        {caseItem.date}
-                      </p>
-                    </div>
-                    <div className="flex flex-col">
-                      <p className="text-gray-600">
-                        <span className="font-semibold">Status:</span>{" "}
-                        {caseItem.status}
+                        <span className="font-semibold">
+                          Evidence Description:
+                        </span>{" "}
+                        {caseItem.Evidence_Description}
                       </p>
                       <p className="text-gray-600">
-                        <span className="font-semibold">Location:</span>{" "}
-                        {caseItem.location}
+                        <span className="font-semibold">Witness Name:</span>{" "}
+                        {caseItem.Witness_Name}
                       </p>
                       <p className="text-gray-600">
-                        <span className="font-semibold">Assigned To:</span>{" "}
-                        {caseItem.assignedTo}
+                        <span className="font-semibold">
+                          Witness Contact Number:
+                        </span>{" "}
+                        {caseItem.Witness_Contact_Number}
                       </p>
+                      <button onClick={() => handleDownloadEvidence(caseItem._id)}>
+                      Download Evidence
+                    </button>
                     </div>
                   </div>
                 </div>
