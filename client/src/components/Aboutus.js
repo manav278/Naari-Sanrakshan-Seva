@@ -2,9 +2,10 @@ import React from "react";
 import { useEffect } from "react";
 import Navbar from "./Navbar";
 import about from "../assets/about.png";
+import Footer from "./Footer";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import "../App.css"
+import "../App.css";
 function Aboutus() {
   useEffect(() => {
     AOS.init();
@@ -48,6 +49,9 @@ function Aboutus() {
           </div>
         </div>
       </section>
+      <div className="bg-[#009688]">
+        <Footer></Footer>
+      </div>
     </div>
   );
 }

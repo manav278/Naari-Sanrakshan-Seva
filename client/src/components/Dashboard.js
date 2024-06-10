@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import axios from "axios";
+import Footer from "./Footer";
 
 const Dashboard = () => {
   const [userData, setUserData] = useState(null);
@@ -47,12 +48,12 @@ const Dashboard = () => {
     try {
       const response = await axios.get(
         `http://localhost:3003/api/evidence/${caseId}`,
-        { responseType: 'blob' } // Set responseType to 'blob' to handle binary data
+        { responseType: "blob" } // Set responseType to 'blob' to handle binary data
       );
       const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = url;
-      link.setAttribute('download', `${caseId}.pdf`);
+      link.setAttribute("download", `${caseId}.pdf`);
       document.body.appendChild(link);
       link.click();
     } catch (error) {
@@ -63,7 +64,7 @@ const Dashboard = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className="flex flex-col lg:flex-row bg-gray-100">
+      <div className="flex flex-col lg:flex-row bg-gray-100 manrope">
         {/* User Details */}
         <div className="w-full lg:w-1/3 p-6">
           <h2 className="text-lg font-semibold mb-2 text-center">
@@ -112,9 +113,9 @@ const Dashboard = () => {
               {caseData.map((caseItem) => (
                 <div
                   key={caseItem.Case_ID}
-                  className="border-b border-gray-200 p-3 flex items-center justify-between"
+                  className="border-b border-gray-200 p-3 flex flex-col items-start justify-between"
                 >
-                  <div className="grid grid-cols-2 gap-4 w-full">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
                     <div className="flex flex-col">
                       <p className="text-gray-600">
                         <span className="font-semibold">Case ID:</span>{" "}
@@ -128,29 +129,30 @@ const Dashboard = () => {
                         <span className="font-semibold">Respondent Name:</span>{" "}
                         {caseItem.Respondent_Name}
                       </p>
-                    </div>
-                    <div className="flex flex-col">
                       <p className="text-gray-600">
                         <span className="font-semibold">
-                          Complaint Description:
+                          Respondent Address:
                         </span>{" "}
-                        {caseItem.Complaint_Description}
+                        {caseItem.Respondent_Address}
                       </p>
+
                       <p className="text-gray-600">
                         <span className="font-semibold">
                           Respondent Contact Number:
                         </span>{" "}
                         {caseItem.Respondent_Contact_Number}
                       </p>
+                    </div>
+                    <div className="flex flex-col">
                       <p className="text-gray-600">
                         <span className="font-semibold">Respondent Email:</span>{" "}
                         {caseItem.Respondent_Email}
                       </p>
                       <p className="text-gray-600">
                         <span className="font-semibold">
-                          Respondent Address:
+                          Complaint Description:
                         </span>{" "}
-                        {caseItem.Respondent_Address}
+                        {caseItem.Complaint_Description}
                       </p>
                       <p className="text-gray-600">
                         <span className="font-semibold">
@@ -168,10 +170,15 @@ const Dashboard = () => {
                         </span>{" "}
                         {caseItem.Witness_Contact_Number}
                       </p>
-                      <button onClick={() => handleDownloadEvidence(caseItem._id)}>
+                    </div>
+                  </div>
+                  <div className="flex justify-center w-full mt-2">
+                    <button
+                      onClick={() => handleDownloadEvidence(caseItem._id)}
+                      className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+                    >
                       Download Evidence
                     </button>
-                    </div>
                   </div>
                 </div>
               ))}
@@ -179,6 +186,8 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      <div className="bg-[#009688]"><Footer></Footer></div>
+      
     </div>
   );
 };
