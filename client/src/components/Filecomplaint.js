@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "./Navbar";
-
+import Footer from "./Footer";
+import complaint from "../assets/complaint.png";
+import colorkit from "../assets/colorkit.png";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const CaseForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     Complaint_Description: "",
     Respondent_Name: "",
@@ -33,27 +39,35 @@ const CaseForm = () => {
 
     try {
       const email = localStorage.getItem("email");
-      await axios.post(
-        `http://localhost:3003/api/upload?email=${email}`,
-        formDataToSend,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      alert("Form submitted successfully");
-      setFormData({
-        Complaint_Description: "",
-        Respondent_Name: "",
-        Respondent_Contact_Number: "",
-        Respondent_Email: "",
-        Respondent_Address: "",
-        Evidence_Description: "",
-        Witness_Name: "",
-        Witness_Contact_Number: "",
-        Evidence: null,
-      });
+      if (email != null) {
+        await axios.post(
+          `http://localhost:3003/api/upload?email=${email}`,
+          formDataToSend,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        toast("Form submitted successfully", {
+          onClose: () => navigate("/dashboard"),
+        });
+        setFormData({
+          Complaint_Description: "",
+          Respondent_Name: "",
+          Respondent_Contact_Number: "",
+          Respondent_Email: "",
+          Respondent_Address: "",
+          Evidence_Description: "",
+          Witness_Name: "",
+          Witness_Contact_Number: "",
+          Evidence: null,
+        });
+      } else {
+        toast("Login First", {
+          onClose: () => navigate("/login"),
+        });
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Error submitting form");
@@ -61,13 +75,16 @@ const CaseForm = () => {
   };
 
   return (
-    <div>
+    <div className="manrope">
       <Navbar></Navbar>
-      <div className="flex flex-wrap justify-center">
-        <div className="w-full lg:w-1/2 lg:pr-4">
-          {/* Left content goes here */}
+      <div className="flex flex-wrap justify-center my-10">
+        <div
+          className="w-full lg:w-1/2 lg:pr-4 flex flex-col justify-center items-center"
+          style={{ backgroundImage: `url(${colorkit})` }}
+        >
+          <img src={complaint} alt="Description of the image" />
         </div>
-        <div className="w-full lg:w-1/2 lg:pl-4">
+        <div className="w-full lg:w-1/2">
           <form
             onSubmit={handleSubmit}
             className="px-4 py-8 bg-gray-100 shadow-md rounded-md"
@@ -179,6 +196,10 @@ const CaseForm = () => {
           </form>
         </div>
       </div>
+      <div className="bg-[#009688]">
+        <Footer></Footer>
+      </div>
+      <ToastContainer />
     </div>
   );
 };

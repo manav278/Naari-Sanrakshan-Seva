@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../Navbar";
 import { loadStripe } from "@stripe/stripe-js";
 import { useState } from "react";
+import Footer from "../Footer";
 function Donate() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -206,6 +207,9 @@ function Donate() {
           </div>
         </div>
       </section>
+      <div className="bg-[#009688]">
+        <Footer></Footer>
+      </div>
     </div>
   );
 }

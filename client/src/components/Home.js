@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import "aos/dist/aos.css";
 import "../App.css";
+import AwesomeSlider from "react-awesome-slider";
+import "react-awesome-slider/dist/styles.css";
 function Faq() {
   useEffect(() => {
     AOS.init();
@@ -16,23 +18,13 @@ function Faq() {
     <div className="bg-[#009688] manrope">
       <Navbar></Navbar>
       {/* -------------------------------------- */}
-      <section
-        class="text-gray-600 body-font mb-[-50px] md:mb-[-120px]"
-        data-aos="fade-right"
-        data-aos-offset="300"
-        data-aos-easing="ease-in-sine"
-      >
-        <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-          <img
-            class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded animated-image"
-            alt="hero"
-            src={mission_shakti}
-          />
-          <div class="text-center lg:w-2/3 w-full">
-            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">
+      <section class="text-gray-600 body-font bg-white">
+        <div class="container mx-auto flex px-5 lg:px-8 py-24 md:flex-row flex-col items-center">
+          <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
               Naari Sanrakshan Seva
             </h1>
-            <p class="mb-8 leading-relaxed text-white">
+            <p class="mb-8 leading-relaxed">
               Every working woman has the fundamental right to work in safe,
               dignified and violence-free conditions. She can file a complaint
               of sexual harassment at workplace with her organisation’s Internal
@@ -48,16 +40,174 @@ function Faq() {
                   File a Complaint
                 </button>
               </Link>
-              <Link
-                to="/donate"
-                className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"
-              >
-                Donate us
+              <Link to="/donate">
+                <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">
+                  Donate us
+                </button>
               </Link>
             </div>
           </div>
+          <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+            <img
+              class="object-cover object-center rounded"
+              alt="hero"
+              src={mission_shakti}
+            />
+          </div>
         </div>
       </section>
+      {/* -------------------------------------- */}
+
+      <div>
+        <AwesomeSlider className="h-[90vh] lg:h-[70vh] xl:h-[45vh]">
+          <div className="text-white">
+            <section class="text-white body-font overflow-hidden">
+              <div class="container px-5 py-24 mx-auto">
+                <div class="-my-8 divide-y-2 text-white">
+                  <div class="py-8 flex flex-wrap md:flex-nowrap">
+                    <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                      <span class="font-semibold title-font text-white">
+                        VISION
+                      </span>
+                      <span class="mt-1 text-white text-sm">12 Jun 2024</span>
+                    </div>
+                    <div class="md:flex-grow">
+                      <h2 class="text-2xl font-medium text-white title-font mb-2">
+                        Empowering Women: A Secure Platform for Workplace Safety
+                      </h2>
+                      <p class="leading-relaxed">
+                        Our vision is to empower women through Naari Sanrakshan
+                        Seva, providing a secure online platform for reporting
+                        workplace sexual harassment. We aspire to create an
+                        environment where every woman feels empowered to raise
+                        her voice against harassment, knowing that her complaint
+                        will be heard, respected, and addressed promptly by
+                        local committees. By fostering trust, accountability,
+                        and support, we aim to contribute to a workplace culture
+                        where women are safe, valued, and able to pursue their
+                        professional goals without fear or discrimination.
+                      </p>
+                      <a class="text-indigo-500 inline-flex items-center mt-4">
+                        Swipe More
+                        <svg
+                          class="w-4 h-4 ml-2"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M5 12h14"></path>
+                          <path d="M12 5l7 7-7 7"></path>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div className="text-white">
+            <section class="body-font overflow-hidden">
+              <div class="container px-5 py-24 mx-auto">
+                <div class="-my-8 divide-y-2">
+                  <div class="py-8 flex flex-wrap md:flex-nowrap">
+                    <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                      <span class="font-semibold title-font">MISSION</span>
+                      <span class="mt-1 text-sm">12 Jun 2024</span>
+                    </div>
+                    <div class="md:flex-grow">
+                      <h2 class="text-2xl font-medium title-font mb-2">
+                        Streamlining Reporting: Empowering Women, Supporting
+                        Change
+                      </h2>
+                      <p class="leading-relaxed">
+                        Our mission is to streamline the process of reporting
+                        workplace sexual harassment through Naari Sanrakshan
+                        Seva. We are dedicated to developing an intuitive and
+                        user-friendly online platform that enables women to file
+                        complaints with ease and connect seamlessly with local
+                        committees for support and resolution. By leveraging
+                        technology and collaboration, we strive to ensure that
+                        complaints are managed efficiently and resolved within
+                        stipulated timeframes. Through ongoing support,
+                        advocacy, and awareness-raising initiatives, we aim to
+                        create a safer and more equitable workplace environment
+                        for all.
+                      </p>
+                      <a class="text-indigo-500 inline-flex items-center mt-4">
+                        Swipe More
+                        <svg
+                          class="w-4 h-4 ml-2"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M5 12h14"></path>
+                          <path d="M12 5l7 7-7 7"></path>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div className="text-white">
+            <section class="body-font overflow-hidden">
+              <div class="container px-5 py-24 mx-auto">
+                <div class="-my-8 divide-y-2">
+                  <div class="py-8 flex flex-wrap md:flex-nowrap">
+                    <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                      <span class="font-semibold title-font">HISTORY</span>
+                      <span class="mt-1 text-sm">12 Jun 2024</span>
+                    </div>
+                    <div class="md:flex-grow">
+                      <h2 class="text-2xl font-medium title-font mb-2">
+                        From Vision to Action: Naari Sanrakshan Seva's Journey
+                      </h2>
+                      <p class="leading-relaxed">
+                        Naari Sanrakshan Seva was born out of a shared
+                        commitment to combat workplace sexual harassment and
+                        provide women with a reliable avenue for seeking
+                        redressal. Rooted in the recognition of systemic
+                        challenges and the urgent need for a digital solution,
+                        our initiative emerged to fill this critical gap.
+                        Drawing on the expertise and dedication of our team, we
+                        embarked on a journey to develop an innovative online
+                        platform that empowers women to report harassment and
+                        facilitates effective communication and collaboration
+                        with local committees. Our history is defined by a
+                        steadfast commitment to justice, equality, and
+                        empowerment.
+                      </p>
+                      <a class="text-indigo-500 inline-flex items-center mt-4">
+                        Swipe More
+                        <svg
+                          class="w-4 h-4 ml-2"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M5 12h14"></path>
+                          <path d="M12 5l7 7-7 7"></path>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </AwesomeSlider>
+      </div>
       {/* -------------------------------------- */}
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path

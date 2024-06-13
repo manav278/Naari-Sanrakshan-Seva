@@ -4,7 +4,7 @@ import { MdEmail, MdPhone } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <div className="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+    <div className="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 manrope">
       <div className="grid gap-10 row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2">
           <a
@@ -83,44 +83,44 @@ const Footer = () => {
           </div>
         </div>
         <div>
-          <span className="text-base font-bold tracking-wide text-gray-900">
+          <span className="text-base font-bold tracking-wide text-gray-800">
             Social
           </span>
           <div className="flex items-center mt-1 space-x-3">
             <a
               href="/"
-              className="text-gray-300 transition-colors duration-300 hover:text-deep-purple-accent-400"
+              className="text-gray-800 transition-colors duration-300 hover:text-deep-purple-accent-400"
             >
               <FaFacebook />
             </a>
             <a
               href="/"
-              className="text-gray-300 transition-colors duration-300 hover:text-deep-purple-accent-400"
+              className="text-gray-800 transition-colors duration-300 hover:text-deep-purple-accent-400"
             >
               <FaTwitter />
             </a>
             <a
               href="/"
-              className="text-gray-300 transition-colors duration-300 hover:text-deep-purple-accent-400"
+              className="text-gray-800 transition-colors duration-300 hover:text-deep-purple-accent-400"
             >
               <FaInstagram />
             </a>
           </div>
-          <p className="mt-4 text-sm text-gray-300">
+          <p className="mt-4 text-sm text-gray-800">
             Bacon ipsum dolor amet short ribs pig sausage prosciutto chicken
             spare ribs salami.
           </p>
         </div>
       </div>
       <div className="flex flex-col-reverse justify-between pt-5 pb-10 border-t lg:flex-row">
-        <p className="text-sm text-gray-200">
+        <p className="text-sm text-gray-800">
           © Copyright 2024 Naari Sanrakshan Seva Inc. All rights reserved.
         </p>
         <ul className="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row">
           <li>
             <a
               href="/"
-              className="text-sm text-gray-300 transition-colors duration-300 hover:text-deep-purple-accent-400"
+              className="text-sm text-gray-800 transition-colors duration-300 hover:text-deep-purple-accent-400"
             >
               F.A.Q
             </a>
@@ -128,7 +128,7 @@ const Footer = () => {
           <li>
             <a
               href="/"
-              className="text-sm text-gray-300 transition-colors duration-300 hover:text-deep-purple-accent-400"
+              className="text-sm text-gray-800 transition-colors duration-300 hover:text-deep-purple-accent-400"
             >
               Privacy Policy
             </a>
@@ -136,7 +136,7 @@ const Footer = () => {
           <li>
             <a
               href="/"
-              className="text-sm text-gray-300 transition-colors duration-300 hover:text-deep-purple-accent-400"
+              className="text-sm text-gray-800 transition-colors duration-300 hover:text-deep-purple-accent-400"
             >
               Terms &amp; Conditions
             </a>

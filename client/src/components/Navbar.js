@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/logo.jpg";
+import Howworks from "../assets/Howworks.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isImageVisible, setIsImageVisible] = useState(false);
@@ -128,7 +129,7 @@ const Navbar = () => {
               &times;
             </button>
             <img
-              src="https://picsum.photos/id/237/200/300"
+              src={Howworks}
               alt="Placeholder"
               className="rounded-lg"
             />

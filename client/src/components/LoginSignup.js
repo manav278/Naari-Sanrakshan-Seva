@@ -4,6 +4,7 @@ import Signup from "./Signup";
 import Navbar from "./Navbar";
 import colorkit from "../assets/colorkit.png";
 import logo from "../assets/logo.jpg";
+import Footer from "./Footer";
 const LoginSignUpPage = () => {
   const [isLogin, setIsLogin] = useState(true);
 
@@ -44,6 +45,9 @@ const LoginSignUpPage = () => {
           </div>
         </div>
       </div>{" "}
+      <div className="bg-[#009688]">
+        <Footer></Footer>
+      </div>
     </div>
   );
 };
